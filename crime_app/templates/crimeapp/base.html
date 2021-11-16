@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Reports</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/main.css' %}">
+</head>
+
+<body>
+    <h1 class="text-center">Crime Reports</h1>
+    <div class="container">
+        {% comment %} first row {% endcomment %}
+        <div class="row">
+
+            <div class="container">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                    Add Crime
+                </button>
+            </div>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                {{ form.title }}
+                                {{ form.report }}
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label for="" class="sr-only">State</label>
+                                        {{form.state}}
+                                        <label for="" class="sr-only">City</label>
+                                        {{form.city}}
+                                    </div>
+                                </div>
+                                <div class="form-inline mt-3">
+                                    <div class="form-group">
+                                        <label for="" class="sr-only">Longitude</label>
+                                        {{form.longitude}}
+                                        <label for="" class="sr-only">Latitude</label>
+                                        {{form.latitude}}
+                                    </div>
+                                </div>
+                                <label class="form-check-label text-secondary" for="defaultCheck1">
+                                    Ongoing?
+                                </label>
+                                {{ form.ongoing }}
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% comment %} second row {% endcomment %}
+        <div class="row">
+            <div class="container">
+                <div class="map text-center mt-4">Map here</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'assets/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>

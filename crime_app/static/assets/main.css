@@ -1,0 +1,13 @@
+.form-control:focus {
+    box-shadow: none;
+}
+
+label {
+    font-size: 13px;
+}
+
+.map {
+    border: 1px solid #000;
+    height: 80vh;
+}
+
