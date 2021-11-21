@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-l-#s7=9-ajir+s2g%dkao3&hk2sj7&yd9ady4wj#zan#jcly$_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['warm-ocean-98203.heroku.com']
 
 
 # Application definition
@@ -49,7 +50,8 @@ INSTALLED_APPS = [
     # 'djoser'
 ]
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000", ]
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000",
+                        'https://thebontus.netlify.app', 'https://thebontus.com']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -92,10 +94,10 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bontus',
-        'USER': 'postgres',
-        'PASSWORD': 'bontusfavor1994?',
-        'HOST': '127.0.0.1',
+        'NAME': 'dafk5lse152odk',
+        'USER': 'bwjauxcuqlodzc',
+        'PASSWORD': 'c766455f5b64b81bf2fe58d52998a7e860297b0fbb0360d759e5972a1c36b3a5',
+        'HOST': 'ec2-34-196-231-34.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -146,3 +148,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
+
+# Heroku: Update database configuration from $DATABASE_URL.
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
