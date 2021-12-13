@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AllBusinessNews, AllCryptoNews, AllEntertainmentNews, AllNewspapers, AllTechNews, AllSportsNews, NewsFromLeadership, NewsFromPunch, World, scrape
+from .views import AllBusinessNews, AllCryptoNews, AllEntertainmentNews, AllNewspapers, AllStories, AllTechNews, AllSportsNews, GlobalSearchList, NewsFromSource, World, scrape
 
 app_name = 'news'
 
@@ -11,13 +11,13 @@ urlpatterns = [
     path('newspapers/', AllNewspapers.as_view()),
     path('business/', AllBusinessNews.as_view()),
     path('world/', World.as_view()),
+    path('all/', AllStories.as_view()),
 
     # path for different sources
-    path('leadership/', NewsFromLeadership.as_view()),
-    path('punch/', NewsFromPunch.as_view()),
+    path('source/<slug:source>/', NewsFromSource.as_view()),
 
     # global search
-    # path('search/', GlobalSearchList.as_view())
+    path('search/<slug:query_string>/', GlobalSearchList.as_view()),
 
     # scraper
     path("scrape/", scrape)

@@ -18,9 +18,21 @@ THE_NATION = 'https://thenationonlineng.net/feed'
 TRIBUNE = 'https://tribuneonlineng.com/feed'
 LEADERSHIP = 'https://leadership.ng/feed'
 NAIRALAND = "https://www.nairaland.com/feed"
-
-
+TELEGRAPH = "https://www.telegraph.co.uk/rss.xml"
+PMNEWS = "https://pmnewsnigeria.com/feed/"
+NAIJANEWS = "https://www.naijanews.com/feed/"
+INDEPENDENT = "https://independent.ng/feed/"
+AUTHORITY = "https://authorityngr.com/feed/"
+BLUEPRINT = "https://www.blueprint.ng/feed/"
+BREAKINGTIMES = "https://www.thebreakingtimes.com/feed/"
+OSUN = "http://www.osundefender.com/feed/"
+TIDE = "http://www.thetidenewsonline.com/feed/"
+PEOPLESDAILY = "https://www.peoplesdailyng.com/feed/"
+NEWSWATCH = "https://www.mydailynewswatchng.com/feed/"
+ACCORD = "https://www.nationalaccordnewspaper.com/feed/"
+MYSCHOOL = "https://myschool.ng/news/feeds"
 # scrapes the leadership newspaper's headlines and stores it in the database
+
 
 def scrape_newspapers():
     scrape_feeds("Punch", PUNCH, "Newspaper")
@@ -34,3 +46,16 @@ def scrape_newspapers():
     scrape_feeds("This Daylive", THISDAYLIVE, "Newspaper")
     scrape_feeds("Vanguard", VANGUARD, "Newspaper")
     scrape_feeds("Nairaland", NAIRALAND, "Newspaper")
+    scrape_feeds("Telegraph", TELEGRAPH, "Newspaper")
+    scrape_feeds("PM NEWS", PMNEWS, "Newspaper")
+    scrape_feeds("Naija News", NAIJANEWS, "Newspaper")
+    scrape_feeds("Independent", INDEPENDENT, "Newspaper")
+    scrape_feeds("Authority", AUTHORITY, "Newspaper")
+    scrape_feeds("Blueprint", BLUEPRINT, "Newspaper")
+    scrape_feeds("Breaking Times", BREAKINGTIMES, "Newspaper")
+    scrape_feeds("Osun Defender", OSUN, "Newspaper")
+    scrape_feeds("The Tide", TIDE, "Newspaper")
+    scrape_feeds("Peoples Daily", PEOPLESDAILY, "Newspaper")
+    scrape_feeds("Newswatch", NEWSWATCH, "Newspaper")
+    scrape_feeds("Accord", ACCORD, "Newspaper")
+    scrape_feeds("MySchool", MYSCHOOL, "Newspaper")

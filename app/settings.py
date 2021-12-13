@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-l-#s7=9-ajir+s2g%dkao3&hk2sj7&yd9ady4wj#zan#jcly$_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['thebontus.herokuapp.com']
+ALLOWED_HOSTS = ['thebontus.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -51,7 +51,7 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000",
-                        'https://thebontus.netlify.app', 'https://thebontus.com']
+                        'https://yiknews.netlify.app', 'https://yiknews.com']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -94,11 +94,15 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dafk5lse152odk',
-        'USER': 'bwjauxcuqlodzc',
-        'PASSWORD': 'c766455f5b64b81bf2fe58d52998a7e860297b0fbb0360d759e5972a1c36b3a5',
-        'HOST': 'ec2-34-196-231-34.compute-1.amazonaws.com',
+        # 'NAME': 'dafk5lse152odk',
+        # 'USER': 'bwjauxcuqlodzc',
+        # 'PASSWORD': 'c766455f5b64b81bf2fe58d52998a7e860297b0fbb0360d759e5972a1c36b3a5',
+        # 'HOST': 'ec2-34-196-231-34.compute-1.amazonaws.com',
         'PORT': '5432',
+        'NAME': 'bontus',
+        'USER': 'postgres',
+        'PASSWORD': 'bontusfavor1994?',
+        'HOST': '127.0.0.1',
     }
 }
 

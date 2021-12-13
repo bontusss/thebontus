@@ -1,3 +1,8 @@
+from django.http.response import Http404
+from .africa import scrape_africa
+from django.db.models import Q
+
+from news.entertainment import scrape_entertainment
 from .business import scrape_business
 from .newspapers import scrape_newspapers
 from .crypto import scrape_crypto
@@ -19,6 +24,15 @@ class AllCryptoNews(APIView):
     def get(self, request, format=None):
         story = Story.objects.filter(
             category=Category.objects.get(name="Crypto"))[::-1]
+        serializer = StorySerializer(story, many=True)
+        return Response(serializer.data)
+
+
+class AllStories(APIView):
+    """ Displays all the headlines in the database in a reverse order """
+
+    def get(self, request, format=None):
+        story = Story.objects.all()[::-1]
         serializer = StorySerializer(story, many=True)
         return Response(serializer.data)
 
@@ -85,31 +99,31 @@ class World(APIView):
 # By Newspapers
 
 
-class NewsFromLeadership(APIView):
-    def get(self, request, format=None):
-        story = Story.objects.filter(newspaper="Leadership")
-        serializer = StorySerializer(story, many=True)
-        return Response(serializer.data)
+class NewsFromSource(APIView):
+    def get_object(self, source):
+        try:
+            return Story.objects.filter(newspaper=source)
+        except Story.DoesNotExist:
+            raise Http404
 
-
-class NewsFromPunch(APIView):
-    def get(self, request, format=None):
-        story = Story.objects.filter(newspaper="Punch")
+    def get(self, request, source, format=None):
+        story = self.get_object(source)
         serializer = StorySerializer(story, many=True)
         return Response(serializer.data)
 
 
 # search view
-# class GlobalSearchList(ListAPIView):
-#     serializer_class = StorySerializer
+class GlobalSearchList(APIView):
+    def get_object(self, query_string):
+        try:
+            return Story.objects.filter(Q(title__icontains=query_string) | Q(url__icontains=query_string) | Q(newspaper__icontains=query_string))
+        except Story.DoesNotExist:
+            raise Http404
 
-#     def get_queryset(self):
-#         query = self.request.QUERY_PARAMS.get('query', None)
-#         story = Story.objects.filter(Q(code__icontains=query) | Q(highlighted__icontains=query) | Q(language__icontains=query))
-#         category = Category.objects.filter(username__icontains=query)
-#         all_results = list(chain(story, category))
-#         all_results.sort(key=lambda x: x.created)
-#         return all_results
+    def get(self, request, query_string, format=None):
+        story = self.get_object(query_string)
+        serializer = StorySerializer(story, many=True)
+        return Response(serializer.data)
 
 
 def scrape(request):
@@ -118,4 +132,6 @@ def scrape(request):
     scrape_newspapers()
     scrape_tech()
     scrape_sports()
+    scrape_entertainment()
+    scrape_africa()
     return render(request, "news/base.html")

@@ -14,6 +14,5 @@ class StorySerializer(serializers.ModelSerializer):
             "url",
             "newspaper",
             'datee',
-            'country',
             "category",
         ]
